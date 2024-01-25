@@ -109,7 +109,7 @@ def temperature_start(start):
     .filter(measurement.station == 'USC00519281')\
     .all()
 
-    temp_list = [{"Max": max, "Min": min, "avg": avg} for max,min,avg, name in station_id]
+    temp_list = [{"TMIN": tmin, "TAVG": tavg, "TMAX": tmax} for tmin, tavg, tmax in station_id]
 
     return jsonify(temp_list)
 
@@ -120,7 +120,7 @@ def temperature_range(start, end):
                                   func.avg(measurement.tobs))\
         .filter(measurement.station == 'USC00519281')\
     .all()
-    temp_list = [{"Max": max, "Min": min, "avg": avg} for max,min,avg, name in station_id]
+    temp_list = [{"TMIN": tmin, "TAVG": tavg, "TMAX": tmax} for tmin, tavg, tmax in station_id]
 
     return jsonify(temp_list)
 
